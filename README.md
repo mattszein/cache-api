@@ -61,7 +61,7 @@ curl http://localhost:8081/
 
 Run tests:
 ```
-docker-compose run cache-api /bin/bash npm test
+docker-compose run cache-api /bin/ash npm test
 ```
 
 ## TODO
