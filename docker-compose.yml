@@ -1,0 +1,33 @@
+version: "3.4"
+services:
+  cache-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/cache-api
+      - /cache-api/node_modules
+    ports:
+      - "8081:8081"
+    command: 'npm start'
+    networks:
+      - app-network
+  db:
+    image: mongo:4.2-bionic
+    container_name: db
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+      - MONGO_INITDB_DATABASE=cache-api
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodata:

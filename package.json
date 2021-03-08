@@ -1,0 +1,45 @@
+{
+  "name": "cache-api",
+  "version": "1.0.0",
+  "description": "FashionCloud coding challenge",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "mongoose": "^5.11.19",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/express": "^4.17.11",
+    "@types/mocha": "^8.2.1",
+    "@types/mongoose": "^5.10.3",
+    "@types/morgan": "^1.9.2",
+    "@types/supertest": "^2.0.10",
+    "chai": "^4.3.3",
+    "mocha": "^8.3.1",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "start": "tsc -p . && NODE_PATH=./build node build/app.js",
+    "build": "tsc -p .",
+    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register src/app.ts",
+    "test": "NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register \"src/test/**/*.spec.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattszein/cache-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattszein/cache-api/issues"
+  },
+  "homepage": "https://github.com/mattszein/cache-api#readme"
+}
