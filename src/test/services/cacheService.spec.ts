@@ -65,11 +65,9 @@ describe("remove a element", function() {
 });
 
 describe("remove all elements", function() {
-  before(async () => {
+  it('Should remove all elements in cache', async () => {
     const generatedElements = generateInputs(8);
     generatedElements.forEach(async element =>  await upsertCache(element));
-  });
-  it('Should remove all elements in cache', async () => {
     const cache = await deleteAll();
     expect(cache).to.not.equal(null);
     const elements = await allCache();
