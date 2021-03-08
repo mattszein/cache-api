@@ -42,7 +42,41 @@ router.get("/cache/:key", async (req: Request, res: Response) => {
 		res.send({data: added.data});
 	}
 	}catch(err) {
-		res.status(400);
+		res.status(500);
+		res.send({error: err});
+	}
+});
+
+// @route GET CACHE /:key
+// @desc Authenticate a user
+// @access PUBLIC
+router.post("/cache/:key", async (req: Request, res: Response) => {
+	try { 
+	const {data} = req.body;
+	if (!data) res.status(400).send({error: 'no data provided'});
+	let validateTTL = false;
+	const cache = await getCache(req.params.key);
+	if (typeof cache !== 'undefined') {
+		validateTTL = (cache? cache.ttl? (cache.ttl > new Date()) : false : false);
+	}
+	const validationAmount = await validateAmount(120);
+	let added;
+	if ( cache && validateTTL ) {
+		added = await addCache({key: req.params.key, data: data})
+		res.status(200);
+	}else {	
+		res.status(201);
+		if (validationAmount) {
+			added = await addCache({data: data});
+		} else {
+			const last = await getLastTTL(); // Overwritten OLD TTL
+			added = await addCache({key: last.key, data: data});
+		}
+	}
+		res.send({data: added.data});
+	}
+	catch(err) {
+		res.status(500);
 		res.send({error: err});
 	}
 });
@@ -68,9 +102,11 @@ router.get("/cache", async (req: Request, res: Response) => {
 router.delete("/cache/deleteAll", async (req: Request, res: Response) => {
 	try { 
 		const cache = await deleteAll();
-		res.status(202);
+		console.log(cache);
+		res.status(202).send({'delete': 'true'});
+
 	}catch(err) {
-		res.status(400);
+		res.status(500);
 		res.send({error: err});
 	}
 });
@@ -87,7 +123,7 @@ router.delete("/cache/:key", async (req: Request, res: Response) => {
 			res.status(204).send({'delete': 'false'});
 		}	
 	}catch(err) {
-		res.status(400);
+		res.status(500);
 		res.send({error: err});
 	}
 });
