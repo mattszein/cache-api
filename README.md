@@ -66,8 +66,8 @@ docker-compose run cache-api /bin/bash npm test
 
 ## TODO
 - Fix Test
+- fix duplication code (ttl and logic on routes -refactoring on get cache and post cache- ) 
 - Create controllers and move logic from routes to controllers
 - Add error handling manager
-- add routes and logic: create and update cache
-- fix duplication code (ttl) 
 - test routes
+- add more test on services
