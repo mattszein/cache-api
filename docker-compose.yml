@@ -9,7 +9,7 @@ services:
       - /cache-api/node_modules
     ports:
       - "8081:8081"
-    command: 'npm run dev'
+    command: 'npm start'
     networks:
       - app-network
   db:
