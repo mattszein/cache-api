@@ -39,7 +39,7 @@ MONGO_PASSWORD=rootpass
 MONGO_HOSTNAME=db
 MONGO_PORT=27017
 MONGO_DB=cache-api
-
+TTL=86400000
 ```
 
 Build image:
@@ -63,3 +63,11 @@ Run tests:
 ```
 docker-compose run cache-api /bin/bash npm test
 ```
+
+## TODO
+- Fix Test
+- Create controllers and move logic from routes to controllers
+- Add error handling manager
+- add create and develop route / controller
+- fix duplication code (ttl) 
+- test routes
