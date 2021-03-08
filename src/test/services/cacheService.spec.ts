@@ -3,6 +3,7 @@ import { expect } from "chai"
 import "dotenv/config";
 
 import {allCache, upsertCache, getCache, deleteCache, deleteAll} from '../../services/cacheService';
+import Cache, { ICache } from '../../models/cache';
 
 import {connect as connectDB, clearDatabase} from "../dbHandler";
 
@@ -48,17 +49,10 @@ describe("create cache", function() {
 });
 
 describe("remove a element", function() {
-  let key = "key";
-  let data = "someData"
-  before(async () => {
-    await upsertCache({
-      key: key,
-      data: data
-    });    
-  });
   it('Should remove a element in cache', async () => {
-    const cache = await deleteCache(key);
-    expect(cache).to.not.equal(null);
+		const generatedElements = generateInputs(1);
+    generatedElements.forEach(async element =>  await Cache.create(element));
+    const cache = await deleteCache(generatedElements[0].key);
     const elements = await allCache();
     expect(elements).that.is.empty; 
   });
