@@ -34,7 +34,7 @@ export const deleteCache = async (key: string): Promise<ICache|null> => {
 };
 
 export const deleteAll = async () => {
-  const deleted = await Cache.deleteMany();
+  const deleted = await Cache.collection.drop();
   return deleted;
 };
 
@@ -43,6 +43,6 @@ export const count = async () => {
 }
 
 export const getLastTTL = async () => {
-  const cache = await Cache.find({}).sort({ttl: 'desc'});
+  const cache = await Cache.find({}).sort({ttl: 'asc'});
   return cache[0];
 }
