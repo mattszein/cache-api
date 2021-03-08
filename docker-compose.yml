@@ -1,6 +1,8 @@
 version: "3.4"
 services:
   cache-api:
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +11,7 @@ services:
       - /cache-api/node_modules
     ports:
       - "8081:8081"
-    command: 'npm start'
+    command: 'npm run dev'
     networks:
       - app-network
   db:
