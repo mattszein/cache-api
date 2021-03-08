@@ -1,0 +1,23 @@
+{
+  "name": "cache-api",
+  "version": "1.0.0",
+  "description": "FashionCloud coding challenge",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattszein/cache-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattszein/cache-api/issues"
+  },
+  "homepage": "https://github.com/mattszein/cache-api#readme"
+}
