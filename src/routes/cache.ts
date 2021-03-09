@@ -47,8 +47,8 @@ router.get("/cache/:key", async (req: Request, res: Response) => {
 	}
 });
 
-// @route GET CACHE /:key
-// @desc Authenticate a user
+// @route POST CACHE /:key
+// @desc Update a cache with data if ttl is valid, or created new
 // @access PUBLIC
 router.post("/cache/:key", async (req: Request, res: Response) => {
 	try { 
